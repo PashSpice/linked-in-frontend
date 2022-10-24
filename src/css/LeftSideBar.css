@@ -1,0 +1,20 @@
+#backgroundImage {
+      height: 70px;
+      width: 300px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+      position: absolute;
+      top: 0px;
+      margin-left: -15px;
+}
+#userImage {
+      height: 100px;
+      width: 100px;
+      position: relative;
+      border: 3px solid white;
+      top: 20px;
+      padding: 0;
+    }
+
+    

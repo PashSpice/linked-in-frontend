@@ -1,0 +1,130 @@
+
+#root{
+  background-color:  #f3f2ef;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-float infinite 3s ease-in-out;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: rgb(112, 76, 182);
+}
+
+@keyframes App-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.spinnerContainer{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.379);
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top:0;
+z-index: 100;
+}
+div.spinner-border{
+  width: 12rem;
+    height: 12rem;
+    border: 0.75em solid #0172b1;
+    border-right-color:#fefefe;
+    
+;
+}
+.loadLogo{
+  position: absolute;
+  height:12.2rem;
+  width: 21.5rem;
+  transform: translateX(-4.65rem);
+
+}
+.navPic{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.postHeader{
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  overflow: hidden;
+}
+.postHeader h6{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  padding-right: 10px;
+  max-width: 530px;
+}
+.likeButton{
+    transform: rotateY(180deg);
+}
+.interactionButtons *{
+  font-size: 16pt;
+}
+.card{
+  overflow: hidden;
+}
+.profilePicStyle{
+  height: 55px;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-top: 15px;
+  margin-right: 15px;
+  flex-shrink: 0;
+  
+}
+.profImg{
+  width: 55px;
+  flex-shrink: 0;
+}
+.postImg{
+  width: 530px;
+}
+.postCard{
+  max-width: 530px;
+}
+#userName:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.clickable{
+  cursor: pointer;
+}

@@ -1,0 +1,25 @@
+.Navbar {
+      width: 100%;
+      padding-left: 140px;
+      padding-right: 140px;
+      background-color: white;
+      height: 55px;
+      position: sticky;
+    }
+.searchBar{
+      margin-right: 500px;
+      
+}
+.icon1 {
+      margin-bottom: -8px;
+}
+.icon2 {
+      margin-bottom: -4px;
+}
+.icon3-4-5{
+      margin-top: 3px;
+}
+.icon6 {
+      margin-top: 2px;
+}
+
