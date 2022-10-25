@@ -101,7 +101,7 @@ export const getFriendsWithThunk = () => {
     const options = {
         method: 'GET'
     };
-  const baseEndpoint = `${process.env.SERVER_URL}/api/profile/`
+  const baseEndpoint = `${process.env.SERVER_URL}/users/`
  /*  console.log("1 get-friends-think") */
   return async (dispatch, getState)=>{
     try {
@@ -126,7 +126,7 @@ export const getPostsWithThunk = () => {
     const options = {
         method: 'GET'
     };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+  const baseEndpoint = `${process.env.SERVER_URL}/posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
