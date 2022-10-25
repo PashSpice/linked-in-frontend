@@ -24,14 +24,10 @@ const Profile = (props) => {
 
    const fetchUser = async (id) => {
       const options = {
-         method: 'GET',
-         headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-
-         }
+         method: 'GET'
       };
 
-      const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/profile/'
+      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/`
       console.log("1 fetch user")
       setState({
          user: undefined,

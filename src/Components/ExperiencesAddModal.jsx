@@ -21,12 +21,11 @@ const ExperiencesAddModal = (props) => {
          method: 'POST',
          body: JSON.stringify(newExperience),
          headers: new Headers({
-            "Content-type": "application/json",
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
+            "Content-type": "application/json"
          })
       };
       console.log("2 fetch exp:")
-      const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${props.userId}/experiences`
+      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          const data = await response.json()
