@@ -76,7 +76,7 @@ export const handleFetchWithThunk = (id) => {
     const options = {
         method: 'GET'
       };
- const baseEndpoint = `${process.env.SERVER_URL}/api/profile/`
+ const baseEndpoint = `${process.env.SERVER_URL}/users/`
   /* console.log("1 get-me-think") */
   return async (dispatch, getState)=>{
     try {
