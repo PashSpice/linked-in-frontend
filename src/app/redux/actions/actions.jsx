@@ -72,11 +72,11 @@ export const delPost =post =>({
   });
 
 export const handleFetchWithThunk = (id) => {
-
+ console.log(process.env.REACT_APP_SERVER_URL)
     const options = {
         method: 'GET'
       };
- const baseEndpoint = `${process.env.SERVER_URL}/users/`
+ const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/`
   /* console.log("1 get-me-think") */
   return async (dispatch, getState)=>{
     try {
@@ -99,9 +99,10 @@ export const handleFetchWithThunk = (id) => {
   
 export const getFriendsWithThunk = () => {
     const options = {
-        method: 'GET'
+        method: 'GET',
+        headers: {Authorization: "Digest admin69"}
     };
-  const baseEndpoint = `${process.env.SERVER_URL}/users/`
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/users/`
  /*  console.log("1 get-friends-think") */
   return async (dispatch, getState)=>{
     try {
@@ -126,7 +127,7 @@ export const getPostsWithThunk = () => {
     const options = {
         method: 'GET'
     };
-  const baseEndpoint = `${process.env.SERVER_URL}/posts/`
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
