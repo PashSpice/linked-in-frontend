@@ -128,3 +128,6 @@ div.spinner-border{
 .clickable{
   cursor: pointer;
 }
+.logInCard{
+  transform: translateY(-50px);
+}

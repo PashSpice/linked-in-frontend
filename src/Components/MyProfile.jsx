@@ -20,7 +20,7 @@ const MyProfile = (props) => {
 
 return (
 
-      <Container>
+      <Container style={{transform: "translateY(50px)"}}>
             <Row>
                   <Col md={8}>
                         <HeaderProfile user={props.currentUser}/>

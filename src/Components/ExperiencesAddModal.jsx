@@ -25,7 +25,7 @@ const ExperiencesAddModal = (props) => {
          })
       };
       console.log("2 fetch exp:")
-      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${props.userId}/experiences`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          const data = await response.json()

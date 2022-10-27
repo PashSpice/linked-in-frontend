@@ -82,6 +82,7 @@ const NewsFeed = (props) => {
       <div className="interactionsContainer mb-2">
           <div> <i className="bi bi-hand-thumbs-up ml-4"></i></div>
       </div >
+      
       <div className="d-flex justify-content-around mb-1 ml-4 border-top interactionButtons">
         <Button className="d-flex align-items-center font-weight-bolder" style={{color: "grey"}} variant="white">
         <i className="bi bi-hand-thumbs-up  mr-1"></i>Like

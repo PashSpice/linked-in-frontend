@@ -27,7 +27,7 @@ const Profile = (props) => {
          method: 'GET'
       };
 
-      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/`
       console.log("1 fetch user")
       setState({
          user: undefined,
@@ -53,7 +53,7 @@ const Profile = (props) => {
 
    return (
       
-      <Container>
+      <Container style={{transform: "translateY(50px)"}}>
          {state.user &&
             <Row>
                <Col md={8}>

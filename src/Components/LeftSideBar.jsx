@@ -2,6 +2,7 @@ import { Container, Col, Image, Row, Card } from "react-bootstrap";
 import "../css/LeftSideBar.css"
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 
 const mapStateToProps = state => {
   return {
@@ -11,6 +12,7 @@ const mapStateToProps = state => {
 };
 
 const LeftSideBar = (props) => {
+
 
 const navigate = useNavigate();
 

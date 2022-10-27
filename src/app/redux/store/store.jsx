@@ -14,7 +14,7 @@ const persistConfig = {
 
 export const initialState = {
   logic: {search:"",liked:[],loading:true, posts: [], feed:[],pics:[],upload:{}},
-  user:{users:[],activeUser:{},friends:[]}
+  user:{users:[],activeUser:{username:null},friends:[]}
 } 
 //{userReducer:userReducer}
 const bigReducer = combineReducers({
@@ -27,8 +27,8 @@ const persistedReducer = persistReducer(persistConfig, bigReducer)
 
 
 export const store = configureStore({
-  /* reducer: persistedReducer, */
-  reducer:bigReducer,
+   reducer: persistedReducer,
+  /*reducer:bigReducer, */
   devTools: process.env.NODE_ENV !== 'production',
   middleware: [thunk]
 })

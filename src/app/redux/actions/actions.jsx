@@ -71,24 +71,26 @@ export const delPost =post =>({
     payload: post
   });
 
-export const handleFetchWithThunk = (id) => {
+export const handleFetchWithThunk = (username) => {
  console.log(process.env.REACT_APP_SERVER_URL)
     const options = {
-        method: 'GET'
+        method: 'GET' ,
+        headers: {Authorization: username} 
       };
- const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/`
+ const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/me`
   /* console.log("1 get-me-think") */
   return async (dispatch, getState)=>{
     try {
       /* console.log("2 get-me-thank",baseEndpoint+id) */
       dispatch(setLoading(true));
-      const response = await fetch(baseEndpoint + id, options);
+      const response = await fetch(baseEndpoint, options);
       if (response.ok) {
         const  data  = await response.json()
-        dispatch(setSignIn(data))
+        
+         dispatch(setSignIn(data)) 
        /* console.log("thick n THunky",data); */
       } else {
-        alert('Error fetching results')
+        console.log('Error fetching user')
       }
     } catch (error) {
       console.log(error)
@@ -97,12 +99,12 @@ export const handleFetchWithThunk = (id) => {
 
 
   
-export const getFriendsWithThunk = () => {
+export const getFriendsWithThunk = (username) => {
     const options = {
-        method: 'GET',
-        headers: {Authorization: "Digest admin69"}
+        method: 'GET'/* ,
+        headers:{Authorization: username} */
     };
-  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/users/`
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/`
  /*  console.log("1 get-friends-think") */
   return async (dispatch, getState)=>{
     try {
@@ -111,7 +113,7 @@ export const getFriendsWithThunk = () => {
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
         const  data  = await response.json()
-        dispatch(setFriends(data))
+        dispatch(setFriends(data.users))
        /* console.log("so manyfriends!",data); */
       } else {
         alert('Error fetching results')
@@ -127,7 +129,7 @@ export const getPostsWithThunk = () => {
     const options = {
         method: 'GET'
     };
-  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/posts/`
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
@@ -136,7 +138,7 @@ export const getPostsWithThunk = () => {
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
         let  data  = await response.json()
-        data = data.reverse()
+        data = data.posts.reverse()
         dispatch(setPosts(data))
         dispatch(addToFeed(data.slice(0,15)))
        console.log("PostPocalypse!",data);
@@ -152,7 +154,7 @@ export const deletePostsWithThunk = (id) => {
     const options = {
         method: 'DELETE'
     };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
   return async (dispatch, getState)=>{
     try {
       
@@ -178,7 +180,7 @@ export const deletePostsWithThunk = (id) => {
     const options = {
       method: 'GET'
     };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
@@ -203,7 +205,7 @@ export const deletePostsWithThunk = (id) => {
       method: 'POST',
           body: postObj
       };
-      const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${id}/picture`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}profile/${id}/picture`
     console.log("1 submit-post-think")
     return async (dispatch, getState)=>{
       try {
@@ -234,7 +236,7 @@ export const getPicsWithThunk = () => {
       Authorization: '' +" "+ pexelKey
     }
   };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
@@ -262,7 +264,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
     method: 'POST',
         body: postImg
     };
-    const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/${id}`
+    const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/${id}`
   console.log("1 submit-post-think")
   return async (dispatch, getState)=>{
     try {
@@ -289,7 +291,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
               method: 'PUT',
               body: JSON.stringify(postObj)
           };
-        const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+        const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
         console.log("1 submit-post-think")
         return async (dispatch, getState)=>{
           try {
@@ -314,7 +316,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
               method: 'POST',             
               body: JSON.stringify(postObj)
           };
-        const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+        const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
         console.log("1 submit-post-think")
         return async (dispatch, getState)=>{
           try {

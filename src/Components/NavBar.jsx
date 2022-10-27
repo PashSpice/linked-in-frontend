@@ -1,4 +1,4 @@
-import { Navbar,Container, Nav, FormControl, Form, Image } from "react-bootstrap"
+import { Navbar,Container, Nav, FormControl, Form, Image, Card, Dropdown } from "react-bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/NavBar.css"
 import { handleFetchWithThunk, setSearch } from "../app/redux/actions/actions";
@@ -15,8 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFetch: person => {
-      dispatch(handleFetchWithThunk(person));
+    getFetch: username => {
+      dispatch(handleFetchWithThunk(username));
     },
     setSearchVal: query =>{
       dispatch(setSearch(query))
@@ -26,21 +26,19 @@ const mapDispatchToProps = dispatch => {
 };
 const NavBar =(props) => {
 
-    useEffect(()=>{
-    props.getFetch("me")
-},[]) 
 
 return (<>
       
 
-      <Navbar bg="light" expand="lg" className="Navbar">
-      <Container>      
+      <Navbar bg="light" expand="lg" className="Navbar">       
+        <Container>      
         <Navbar.Brand href="/">
         
               <i className="bi bi-linkedin "
               style={{color: "#0b65c2", fontSize: "35px"}}></i>
            
         </Navbar.Brand>
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Nav className="me-auto">
           <div style={{ backgroundColor: "#eef3f8", width: "280px", height: "34px",}}
@@ -98,9 +96,26 @@ return (<>
           <Nav.Link
              className="d-flex flex-column align-items-center pr-4"
              href="/profile" style={{width: "90px"}}>
-              <Image className="navPic mt-1" src={props.currentUser.image}/>
-            <span className="d-none d-md-inline-block" style={{fontSize: "12px"}}>{props.currentUser.name}</span>
           </Nav.Link>
+          
+
+          <Dropdown>
+      <Dropdown.Toggle variant="light" id="dropdown-basic" className="d-flex flex-row align-items-center py-0">
+        <div className="d-flex flex-column">
+         <Image className="navPic mt-1" src={props.currentUser.image}/>
+         <span className="d-none d-md-inline-block" style={{fontSize: "12px"}}>{props.currentUser.name}</span>
+        </div>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+        <Dropdown.Item onClick={()=>{
+          localStorage.clear();
+          window.location.reload();
+        }}
+        >Log Out</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
 
 
           <Nav.Link
@@ -116,7 +131,7 @@ return (<>
 
           </Nav.Link>
           </Navbar.Collapse>
-          </Nav>
+          </Nav>          
       </Container>
     </Navbar>
                </>

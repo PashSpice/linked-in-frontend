@@ -46,7 +46,7 @@ const Experiences = (props) => {
          method: 'GET'
       };
 
-      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${id}/experiences`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${id}/experiences`
       console.log("1 fetch user")
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {

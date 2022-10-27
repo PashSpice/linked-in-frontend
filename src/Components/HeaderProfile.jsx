@@ -126,11 +126,7 @@ return (
                               </Modal.Body>
                               <Modal.Footer style={{backgroundColor: "#1d2226"}}>
                               <Row className="mt-2 pl-2">
-
-                              {/* <Button variant="outline-light ml-3">
-                               <i className="bi bi-pencil mr-2" ></i>
-                               <span>Edit</span>
-                              </Button> */}
+                              
                               <span className="ml-2">
                               <label className=" btn btn-outline-light my-0 " htmlFor="picUploadBtn"><i className="bi bi-pencil mr-2" ></i>
                               <span id="userName">Edit</span></label>
@@ -142,16 +138,8 @@ return (
                               <Button onClick={()=>{uploadImage(); handleClose3()}} variant="outline-light ml-3">
                                <i className="bi bi-camera-fill mr-2"></i>
                                <span>Add photo</span>
-                               </Button> 
-                           
-                               {/* <Button variant="outline-light ml-3">
-                               <i className="bi bi-image-fill mr-2" ></i>
-                               <span>Frames</span>
-                               </Button> */}
-                           
-                               {/* <Button variant="outline-light" style={{marginLeft: "320px"}}>
-                               <i className="bi bi-trash3-fill mr-2"></i>
-                                     Delete</Button> */}
+                               </Button>                            
+                               
                                </Row>
                               </Modal.Footer>
                         </Modal>

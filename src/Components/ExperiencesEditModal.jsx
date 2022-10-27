@@ -39,7 +39,7 @@ const ExperiencesEditModal = (props) => {
          })
       };
       console.log("2 EDIT exp:")
-      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          const data = await response.json()
@@ -59,7 +59,7 @@ const ExperiencesEditModal = (props) => {
          })
       };
       console.log("2 DELETE exp:")
-      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
+      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          setLoading(false)

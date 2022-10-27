@@ -13,8 +13,8 @@ const mapStateToProps = state => {
     };
     const mapDispatchToProps = dispatch => {
       return {
-        getFriends: people => {
-          dispatch(getFriendsWithThunk());
+        getFriends: username => {
+          dispatch(getFriendsWithThunk(username));
         },
       };  
     };
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 const PeopleAlsoViewed = (props) => {
       let  friendsWithPics = [...props.friendList.filter(friend => friend.image !== "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png")]
       useEffect(()=>{
-            props.getFriends()
+            props.getFriends(props.currentUser.username)
         },[]) 
       
 

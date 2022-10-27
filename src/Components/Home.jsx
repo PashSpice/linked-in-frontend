@@ -11,6 +11,7 @@ import LeftDownSideBar from "./LeftDownSideBar";
 import NewsFeed from "./NewsFeed";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getPostsWithThunk } from "../app/redux/actions/actions";
+import { Translate } from "react-bootstrap-icons";
 
 const mapStateToProps = state => {
     return {
@@ -55,7 +56,7 @@ function addMoreToFeed(){
 return(
 <>
 {console.log("loading:",props.loadState)}
-<Container>
+<Container style={{transform: "translateY(50px)"}}>
 {props.loadState && <Loader/>}
 
   <Row>
@@ -89,7 +90,7 @@ return(
     </Col>
     <Col md={3}>
       
-      <RightSideBar />
+      <RightSideBar style={{zIndex:0}} />
       <Card className="mt-3 pl-2 pr-2" style={{ width: '18rem', borderRadius: "12px", height: "220px"}}>
       <Image src="https://media.licdn.com/media/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png"
                         fluid/>                        
