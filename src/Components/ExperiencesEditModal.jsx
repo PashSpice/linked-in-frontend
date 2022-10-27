@@ -35,12 +35,11 @@ const ExperiencesEditModal = (props) => {
          method: 'PUT',
          body: JSON.stringify(experience),
          headers: new Headers({
-            "Content-type": "application/json",
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
+            "Content-type": "application/json"
          })
       };
       console.log("2 EDIT exp:")
-      const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${props.userId}/experiences/${props.experience._id}`
+      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          const data = await response.json()
@@ -57,11 +56,10 @@ const ExperiencesEditModal = (props) => {
       const options = {
          method: 'DELETE',
          headers: new Headers({
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
          })
       };
       console.log("2 DELETE exp:")
-      const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${props.userId}/experiences/${props.experience._id}`
+      const baseEndpoint = `${process.env.SERVER_URL}/api/profile/${props.userId}/experiences/${props.experience._id}`
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {
          setLoading(false)

@@ -74,12 +74,9 @@ export const delPost =post =>({
 export const handleFetchWithThunk = (id) => {
 
     const options = {
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-        }
-    };
- const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/profile/'
+        method: 'GET'
+      };
+ const baseEndpoint = `${process.env.SERVER_URL}/users/`
   /* console.log("1 get-me-think") */
   return async (dispatch, getState)=>{
     try {
@@ -102,12 +99,9 @@ export const handleFetchWithThunk = (id) => {
   
 export const getFriendsWithThunk = () => {
     const options = {
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-        }
+        method: 'GET'
     };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/profile/'
+  const baseEndpoint = `${process.env.SERVER_URL}/users/`
  /*  console.log("1 get-friends-think") */
   return async (dispatch, getState)=>{
     try {
@@ -130,12 +124,9 @@ export const getFriendsWithThunk = () => {
 
 export const getPostsWithThunk = () => {
     const options = {
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-        }
+        method: 'GET'
     };
-  const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
+  const baseEndpoint = `${process.env.SERVER_URL}/posts/`
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
@@ -158,10 +149,7 @@ export const getPostsWithThunk = () => {
   
 export const deletePostsWithThunk = (id) => {
     const options = {
-        method: 'DELETE',
-        headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-        }
+        method: 'DELETE'
     };
   const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
   return async (dispatch, getState)=>{
@@ -187,10 +175,7 @@ export const deletePostsWithThunk = (id) => {
   
   export const getMorePostsWithThunk = (posts, n=2) => {
     const options = {
-      method: 'GET',
-      headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-          }
+      method: 'GET'
     };
   const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
   /* console.log("1 get-post-think") */
@@ -215,10 +200,6 @@ export const deletePostsWithThunk = (id) => {
   export const uploadPicWithThunk = (postObj,id) => {
     const options = {
       method: 'POST',
-          headers: {
-            
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-          },
           body: postObj
       };
       const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${id}/picture`
@@ -249,7 +230,7 @@ export const getPicsWithThunk = () => {
   const options = {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer' +" "+ pexelKey
+      Authorization: '' +" "+ pexelKey
     }
   };
   const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
@@ -278,10 +259,6 @@ export const getPicsWithThunk = () => {
 export const postFeedImgWithThunk = (postImg,id) => {
   const options = {
     method: 'POST',
-        headers: {
-          
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-        },
         body: postImg
     };
     const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/${id}`
@@ -309,10 +286,6 @@ export const postFeedImgWithThunk = (postImg,id) => {
       export const editPostsWithThunk = (postObj, id) => {
           const options = {
               method: 'PUT',
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-              },
               body: JSON.stringify(postObj)
           };
         const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
@@ -337,11 +310,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
 
       export const submitPostsWithThunk = (postObj, postImg = null) => {
           const options = {
-              method: 'POST',
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA3ODg0NDFlYjc2ZDAwMTUxNTAxZjgiLCJpYXQiOjE2NjY2NDE3MTMsImV4cCI6MTY2Nzg1MTMxM30.vxYdNt2LLznO0U7RmaS7_xKllgxqLcMKZcHjSJAR-ok'
-              },
+              method: 'POST',             
               body: JSON.stringify(postObj)
           };
         const baseEndpoint = 'https://striveschool-api.herokuapp.com/api/posts/'
