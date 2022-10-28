@@ -81,6 +81,8 @@ export const delPost =post =>({
     payload: post
   });
 
+
+
 export const handleFetchWithThunk = (username) => {
  console.log(process.env.REACT_APP_SERVER_URL)
     const options = {
@@ -193,6 +195,7 @@ export const getPostsWithThunk = () => {
         method: 'GET'
     };
   const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/`
+  
   /* console.log("1 get-post-think") */
   return async (dispatch, getState)=>{
     try {
@@ -206,6 +209,52 @@ export const getPostsWithThunk = () => {
         dispatch(setPosts(data))
         dispatch(addToFeed(data.slice(0,15)))
        console.log("PostPocalypse!",data);
+      } else {
+        alert('Error fetching results')
+      }
+    } catch (error) {
+      /* console.log(error) */
+    }finally{/* console.log("3 get-post-thunk") */;dispatch(setLoading(false));}
+  }}
+  export const getLikesWithThunk = (postId, username) => {
+    const options = {
+        method: 'GET'
+    };
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/${postId}/likes`
+  
+  /* console.log("1 get-post-think") */
+  return async (dispatch, getState)=>{
+    try {
+      /* console.log("2 get-post-thank",baseEndpoint) */
+      dispatch(setLoading(true));
+      const response = await fetch(baseEndpoint, options);
+      if (response.ok) {
+        let  data  = await response.json()
+        data = data.posts.likes
+        dispatch(setLike(data))
+        const userBaseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/`
+      } else {
+        alert('Error fetching results')
+      }
+    } catch (error) {
+      /* console.log(error) */
+    }finally{/* console.log("3 get-post-thunk") */;dispatch(setLoading(false));}
+  }}
+  export const LikePostWithThunk = (postId, userId) => {
+    const options = {
+        method: 'PUT'
+    };
+  const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}posts/${postId}/likes/${userId}`
+  console.log(baseEndpoint)
+ // https://important-bat-uniform.cyclic.app/posts/6357cf6d62ef9c609d32c2b1/likes/6357d00562ef9c609d32c2b6
+  return async (dispatch, getState)=>{
+    try {
+     
+      dispatch(setLoading(true));
+      const response = await fetch(baseEndpoint, options);
+      if (response.ok) {
+        let  data  = await response.json()
+        data = data.likes
       } else {
         alert('Error fetching results')
       }

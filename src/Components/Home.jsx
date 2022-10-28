@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Container, Row, Col, Card,Image} from "react-bootstrap";
 import { connect } from "react-redux";
-import { addToFeed, setSearch } from '../app/redux/actions/actions';
+import { addToFeed, setSearch,setLike } from '../app/redux/actions/actions';
 import FooterRightSide from "./FooterRightSide";
 import RightSideBar from "./RightSideBar";
 import AddPost from "./AddPost";
@@ -10,7 +10,7 @@ import LeftSideBar from "./LeftSideBar";
 import LeftDownSideBar from "./LeftDownSideBar";
 import NewsFeed from "./NewsFeed";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getPostsWithThunk } from "../app/redux/actions/actions";
+import { getPostsWithThunk } from "../app/redux/actions/actions.jsx";
 import { Translate } from "react-bootstrap-icons";
 
 const mapStateToProps = state => {
@@ -35,8 +35,10 @@ const mapStateToProps = state => {
       },
       addToFeed: posts => {
         dispatch(addToFeed(posts));
+      },
+      getLikes:(postId) => {
+        dispatch(setLike(postId))
       }
-      
     };  
   };
 const Home = (props)=>{  
@@ -83,7 +85,7 @@ return(
 
       >
           {<div>
-            {props.feed.filter((post)=>post.text.toLowerCase().includes(props.query.toLowerCase()) ).map((post, index)=><NewsFeed key={index} user={post.user[0]} image={post.image} createdAt={post.createdAt} username={post.user.username} text={post.text} postId={post._id}  />)}
+            {props.feed.filter((post)=>post.text.toLowerCase().includes(props.query.toLowerCase()) ).map((post, index)=><NewsFeed  key={index} user={post.user[0]} image={post.image} createdAt={post.createdAt} username={post.user.username} text={post.text} postId={post._id} likes={props.getLikes(post._id)} />)}
             </div>}   
       </InfiniteScroll>
      
