@@ -66,6 +66,16 @@ const ExperiencesAddModal = (props) => {
                   value={newExperience?.company}
                   onChange={(e) => { inputChange(e) }}
                />
+               <Form.Label className="" style={{ fontSize: "13px" }}>Role name*</Form.Label>
+               <Form.Control
+                  style={{ height: "30px", marginTop: "-8px", fontSize: "14px" }}
+                  className="mb-3"
+                  name="role"
+                  type="text"
+                  placeholder="Ex: Microsoft"
+                  value={newExperience?.company}
+                  onChange={(e) => { inputChange(e) }}
+               />
                <Form.Label className="" style={{ fontSize: "13px" }}>Location</Form.Label>
                <Form.Control
                   style={{ height: "30px", marginTop: "-8px", fontSize: "14px" }}

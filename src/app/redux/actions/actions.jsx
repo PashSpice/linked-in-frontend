@@ -449,10 +449,15 @@ export const postFeedImgWithThunk = (postImg,id) => {
           }finally{console.log("3 submit-post-thunk");dispatch(setLoading(false));}
         }}
 
+
+
         export const addExperienceWithThunk = (postObj, id) => {
           const options = {
-              method: 'PUT',
-              body: JSON.stringify(postObj)
+              method: 'POST',
+              body: JSON.stringify(postObj),
+              headers:{
+                'Content-Type':'application/json'
+              }
           };
         const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}users/experience/${id}`
         console.log("1 submit-post-think")

@@ -36,7 +36,7 @@ const logicReducer = (state = initialState.logic, action) => {
       case GET_MORE_POSTS:
         return{
           ...state,
-          posts: [...state.posts, ...action.payload]
+          posts: [/* ...state.posts, */ ...action.payload]
         }      
       case ADD_TO_FEED:
         return{

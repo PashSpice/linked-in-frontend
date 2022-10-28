@@ -47,6 +47,9 @@ const NewsFeed = (props) => {
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
+  const [show3, setShow3] = useState(false);
+  const handleClose3 = () => setShow3(false);
+  const handleShow3 = () => setShow3(true);
   const [text, setText] = useState('');
 
   /* useEffect(()=>{
@@ -70,11 +73,11 @@ const NewsFeed = (props) => {
               </div>
              <div className="postHeader">
                 <h6 className="mb-0 ">{props.text}</h6>
-                {props.user.name && <p className="text-secondary mb-0">{`${props.user.name} ${props.user.surname}`}</p>}
+                {props.user &&props.user.name && <p className="text-secondary mb-0">{`${props.user.name} ${props.user.surname}`}</p>}
                 <p className="text-secondary mt-n1 mb-0">{formatDistanceToNow(new Date(props.createdAt))}</p>
               </div> 
               <div className=" ml-auto mr-3 mt-2" onClick={handleShow}>
-                {props.currentUser.username===props.user.username? <i className="bi bi-three-dots" ></i>:<div></div>}          
+                {props.user && props.currentUser.username===props.user.username? <i className="bi bi-three-dots" ></i>:<div></div>}          
               </div>
 
             </div>
@@ -84,7 +87,7 @@ const NewsFeed = (props) => {
        <div></div>}
       </div>
       <div className="interactionsContainer mb-2">
-          <div> <i className="bi bi-hand-thumbs-up ml-4"></i></div>
+          <div className="d-flex"> <div className="ml-3 mb-0 mr-0">{`${props.likes?.length}`}</div><i className="bi bi-hand-thumbs-up ml-0" onClick={()=>{handleClose3();handleShow3();}}></i></div>
       </div >
       
       <div className="d-flex justify-content-around mb-1 ml-4 border-top interactionButtons">
@@ -172,6 +175,19 @@ const NewsFeed = (props) => {
                   </Modal.Body>
              
             </Modal>
+            <Modal size="sm" show={show3} onHide={() => {handleClose3()}} className="modal-image">
+                              <Modal.Header closeButton >
+                              <Modal.Title className="font-weight-bold" style={{fontSize: "20px"}}>Liked By:</Modal.Title>
+                              </Modal.Header>                              
+                              <Modal.Body>
+                              {/* {props.likes.map((person, index)=>{
+                                <div  key={index + "like"}>
+
+                                </div>
+                              }} */}
+                              </Modal.Body>
+                              
+                        </Modal>
                         </>
    
 )
