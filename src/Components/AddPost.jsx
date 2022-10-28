@@ -18,8 +18,8 @@ const mapDispatchToProps = dispatch => {
     uploadToState: file => {
       dispatch(upload(file));
     },
-    sendPost: (text,img)=> { 
-            dispatch(submitPostsWithThunk({text},img));
+    sendPost: (text,username,id,img)=> { 
+            dispatch(submitPostsWithThunk({text,username,id},img));
     }
   };  
 };
@@ -42,7 +42,7 @@ const AddPost = (props) => {
       console.log(key) 
     }*/
      console.log("doesitdata?",formData) 
-      props.sendPost(text, formData);  
+      props.sendPost(text,props.currentUser.username,props.currentUser._id, formData);  
      setText('');
   }
 
@@ -62,9 +62,9 @@ return (
              <Form  className="mt-3">
               <FormControl 
                 type="text"
-                placeholder="Start a post"
+                placeholder="Create a post"
                 className="pl-4"
-                value="Start a post"
+                value="Create a post"
                 onClick={()=>{handleShow();props.uploadToState({})}}
                 style={{ backgroundColor: "white",
                 border: "1px solid grey",

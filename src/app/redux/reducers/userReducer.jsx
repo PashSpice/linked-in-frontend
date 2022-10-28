@@ -1,5 +1,5 @@
 import { initialState } from "../store/store";
-import { SIGN_UP, SIGN_IN, SIGN_OUT, GET_FRIENDS } from "../actions/actions";
+import { SIGN_UP, SIGN_IN, SIGN_OUT, GET_FRIENDS, GET_OTHER } from "../actions/actions";
 const userReducer = (state = initialState.user, action) => {
     switch (action.type) {
       case SIGN_UP:
@@ -23,6 +23,11 @@ const userReducer = (state = initialState.user, action) => {
         return {
           ...state,
           friends: action.payload          
+        };       
+      case GET_OTHER:
+        return {
+          ...state,
+          otherUser: action.payload          
         };       
       
       default:

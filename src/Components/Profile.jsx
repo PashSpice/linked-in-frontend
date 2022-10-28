@@ -5,51 +5,35 @@ import { useState } from "react";
 import Experiences from "./Experiences";
 import PeopleAlsoViewed from "./PeopleAlsoViewed";
 import HeaderProfileFriend from "./HeaderProfileFriend";
+import { connect } from "react-redux";
 
 
-
-
+const mapStateToProps = state => {
+   return {
+   loadState: state.logic.loading   
+   };
+ };
+ 
+ const mapDispatchToProps = dispatch => {
+   return {
+     fetchUser: id => {
+       dispatch((id));
+     }
+   };  
+ };
 const Profile = (props) => {
    const params = useParams()
 
-   const [state, setState] = useState({
-      loading: false,
+   const [state, setState] = useState({      
       user: undefined
    })
 
 
    useEffect(() => {
-      fetchUser(params.userId)
+      props.fetchUser(params.userId)
    }, [])
 
-   const fetchUser = async (id) => {
-      const options = {
-         method: 'GET'
-      };
-
-      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/`
-      console.log("1 fetch user")
-      setState({
-         user: undefined,
-         loading: true
-      })
-      const response = await fetch(baseEndpoint + id, options);
-      if (response.ok) {
-         const data = await response.json()
-         setState({
-            loading: false,
-            user: data
-         })
-         console.log("data: ", data);
-      } else {
-         alert('Error fetching results')
-         setState({
-            loading: false,
-            user: undefined
-         })
-      }
-   }
-
+  
 
    return (
       
@@ -57,9 +41,9 @@ const Profile = (props) => {
          {state.user &&
             <Row>
                <Col md={8}>
-                  <HeaderProfileFriend user={state.user} fetchUser={fetchUser} />
+                  <HeaderProfileFriend user={state.user} fetchUser={props.fetchUser} />
                   
-                  <Experiences userId={state.user._id} canEdit={false}/>
+                  {/* <Experiences userId={state.user._id} canEdit={false}/> */}
                </Col>
 
                <Col md={4}>
@@ -80,4 +64,4 @@ const Profile = (props) => {
 
    )
 }
-export default Profile
+export default connect(mapStateToProps, mapDispatchToProps)( Profile)

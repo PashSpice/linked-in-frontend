@@ -4,6 +4,23 @@ import { useEffect } from "react"
 import ExperiencesList from "./ExperiencesList"
 import ExperiencesEditModal from "./ExperiencesEditModal"
 import ExperiencesAddModal from "./ExperiencesAddModal"
+import { connect } from "react-redux"
+import {handleFetchWithThunk} from '../app/redux/actions/actions';
+const mapStateToProps = state => {
+   return {
+      loadState: state.logic.loading,
+      currentUser: state.user.activeUser
+   };
+ };
+ 
+ const mapDispatchToProps = dispatch => {
+   return {
+     fetchExperiences: id => {
+       dispatch(handleFetchWithThunk(id));
+     }
+     
+   };  
+ };
 
 const Experiences = (props) => {
 
@@ -14,7 +31,7 @@ const Experiences = (props) => {
 
    const handleCloseAddModal = () => {
       setShowAddModal(false)
-      fetchExperiences(props.userId)
+     /*  fetchExperiences(props.userId) */
    }
    const handleShowAddModal = () => setShowAddModal(true);
 
@@ -23,7 +40,7 @@ const Experiences = (props) => {
 
    const handleCloseEditModal = () => {
       setShowEditModal(false)
-      fetchExperiences(props.userId)
+      props.fetchExperiences(props.userId) 
    }
    const handleShowEditModal = (experience) => {
       setEditingExperience(experience)
@@ -32,40 +49,10 @@ const Experiences = (props) => {
 
 
    useEffect(() => {
-      fetchExperiences(props.userId)
+      setExperiences(props.currentUser.experiences) 
    }, [])
 
-
-   // useEffect(() => {
-   //       console.log("State: ", state)
-   // })    
-
-
-   const fetchExperiences = async (id) => {
-      if(id){const options = {
-         method: 'GET'
-      };
-
-      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${id}/experiences`
-      console.log("1 fetch user")
-      const response = await fetch(baseEndpoint, options);
-      if (response.ok) {
-         const data = await response.json()
-         setLoading(
-            false
-         )
-         setExperiences(
-            data
-         )
-         console.log("experiences:", data);
-      } else {
-         alert('Error fetching results')
-         setLoading(
-            false
-         )
-      }}
-   }
-
+ 
    return (
       <Card className="mt-2 pb-3 mb-4" style={{ width: '46rem', borderRadius: "12px", minHeight: "120px" }}>
          <ExperiencesAddModal userId={props.userId} show={showAddModal} handleClose={handleCloseAddModal} />
@@ -87,7 +74,7 @@ const Experiences = (props) => {
                return <div key={index}>
                   <Row>
                      <Col md={10}>
-                        <ExperiencesList experience={experience} fetchExperiences={fetchExperiences} />
+                        <ExperiencesList experience={experience} /* fetchExperiences={fetchExperiences} */ />
                      </Col>
                      {props.canEdit &&
                         <Col md={2}>
@@ -103,4 +90,4 @@ const Experiences = (props) => {
    )
 
 }
-export default Experiences
+export default  connect(mapStateToProps, mapDispatchToProps)(Experiences)

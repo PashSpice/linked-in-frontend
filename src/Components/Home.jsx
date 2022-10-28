@@ -83,7 +83,7 @@ return(
 
       >
           {<div>
-            {props.feed.filter((post)=>post.text.toLowerCase().includes(props.query.toLowerCase()) ).map((post, index)=><NewsFeed key={index} user={post.user} image={post.image} createdAt={post.createdAt} username={post.username} text={post.text} postId={post._id}  />)}
+            {props.feed.filter((post)=>post.text.toLowerCase().includes(props.query.toLowerCase()) ).map((post, index)=><NewsFeed key={index} user={post.user[0]} image={post.image} createdAt={post.createdAt} username={post.user.username} text={post.text} postId={post._id}  />)}
             </div>}   
       </InfiniteScroll>
      

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Col, Button, Row, Card, Form, Container, Modal, Image } from "react-bootstrap";
 import { connect } from "react-redux";
-import { handleFetchWithThunk, upload, uploadPicWithThunk } from "../app/redux/actions/actions";
+import { handleFetchWithThunk, upload, uploadPicWithThunk, addUserWithThunk } from "../app/redux/actions/actions";
 
 
 const mapStateToProps = state => {
@@ -21,7 +21,10 @@ const mapDispatchToProps = dispatch => {
     },
     uploadToSite: (file,id) =>{
           dispatch(uploadPicWithThunk(file,id))
-        }
+        },
+    addUser: (newUser, pic) =>{
+      dispatch(addUserWithThunk(newUser, pic))
+    }
   };  
 };
 const imageMimeType = /image\/(png|jpg|jpeg|gif)/i; 
@@ -43,18 +46,23 @@ const LogIn = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const uploadImage = ()=>{
+ /*  const uploadImage = ()=>{
     const formData = new FormData();
     formData.append("profile", props.uploaded);
     props.uploadToSite(formData,props.currentUser._id);
-  }
+  } */
 
-const handleSubmit = (e) => {
+const handleSubmit =  (e) => {
   const form = e.currentTarget;
   if (form.checkValidity() === false) {
     e.preventDefault();
     e.stopPropagation(); 
   }else{
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", props.uploaded);
+    const newUser = {username:usernameField, email:emailField, name:nameField, surname:surnameField, title:titleField, area:locationField, bio:bioField, image:"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"};
+    props.addUser(newUser, formData)
     handleClose()
   }
   setValidated(true);  

@@ -1,5 +1,24 @@
 import { Col, Button, Modal, Form, } from "react-bootstrap"
 import { useState } from "react";
+import { addExperienceWithThunk } from "../app/redux/actions/actions";
+import { connect } from "react-redux";
+
+
+const mapStateToProps = state => {
+   return {
+      loadState: state.logic.loading,
+      currentUser: state.user.activeUser
+   };
+ };
+ 
+ const mapDispatchToProps = dispatch => {
+   return {
+     addExperience: (postObj, id) => {
+       dispatch(addExperienceWithThunk(postObj,id));
+     }     
+   };  
+ };
+
 
 
 const ExperiencesAddModal = (props) => {
@@ -8,42 +27,14 @@ const ExperiencesAddModal = (props) => {
 
    const inputChange = (e) => {
       setNewExperiences({
-
          ...newExperience,
          [e.target.name]: e.target.value
-
       })
    }
 
-   const addExperiences = async (event) => {
+   const handleSubmit = async (event) => {
       event.preventDefault()
-      const options = {
-         method: 'POST',
-         body: JSON.stringify(newExperience),
-         headers: new Headers({
-            "Content-type": "application/json"
-         })
-      };
-      console.log("2 fetch exp:")
-      const baseEndpoint = `${process.env.REACT_APP_SERVER_URL}/api/profile/${props.userId}/experiences`
-      const response = await fetch(baseEndpoint, options);
-      if (response.ok) {
-         const data = await response.json()
-         console.log("data exp:", data)
-         setNewExperiences(
-            {
-               area: "",
-               company: "",
-               role: "",
-               startDate: "",
-               endDate: "",
-               description: "",
-            }
-         )
-         setLoading(true)
-      } else {
-         alert('Error fetching results add exp')
-      }
+      props.addExperience(newExperience, props.currentUser._id)
    }
 
    return (
@@ -53,7 +44,7 @@ const ExperiencesAddModal = (props) => {
          </Modal.Header>
          <Modal.Body>
             <Form className="w-100"
-               onSubmit={(event) => addExperiences(event)}>
+               onSubmit={(event) => handleSubmit(event)}>
                <Form.Label className="" style={{ fontSize: "13px" }}>Title*</Form.Label>
                <Form.Control
                   style={{ height: "30px", marginTop: "-8px", fontSize: "14px" }}
@@ -139,4 +130,4 @@ const ExperiencesAddModal = (props) => {
 }
 
 
-export default ExperiencesAddModal
+export default connect(mapStateToProps, mapDispatchToProps)(ExperiencesAddModal)

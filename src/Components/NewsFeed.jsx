@@ -59,18 +59,18 @@ const NewsFeed = (props) => {
            {props.user?.image ?   
             <img className="profImg clickable" src={props.user.image} alt="profile pic" onClick={
               () => {
-                navigate(`/profile/${props.user._id}`)
+                navigate(`/profile/${props._id}`)
                 
             }} /> :
-                  <img src="https://media.istockphoto.com/vectors/user-avatar-profile-icon-black-vector-illustration-vector-id1209654046?k=20&m=1209654046&s=612x612&w=0&h=Atw7VdjWG8KgyST8AXXJdmBkzn0lvgqyWod9vTb2XoE=" alt="prof pic"/> }
+                  <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="prof pic" style={{width:"60px"}}/> }
               </div>
              <div className="postHeader">
                 <h6 className="mb-0 ">{props.text}</h6>
-                <p className="text-secondary mb-0">{props.username}</p>
+                {props.user.name && <p className="text-secondary mb-0">{`${props.user.name} ${props.user.surname}`}</p>}
                 <p className="text-secondary mt-n1 mb-0">{formatDistanceToNow(new Date(props.createdAt))}</p>
               </div> 
               <div className=" ml-auto mr-3 mt-2" onClick={handleShow}>
-                <i className="bi bi-three-dots" ></i>          
+                {props.currentUser.username===props.user.username? <i className="bi bi-three-dots" ></i>:<div></div>}          
               </div>
 
             </div>
@@ -150,42 +150,12 @@ const NewsFeed = (props) => {
                               placeholder={props.text}
                               as="textarea" rows={5}
                             />
-                        </Form.Group>
-                        {/* <Row className="ml-2 mb-3 font-weight-bold">
-                          <div style={{color: "#0b65c2"}}>
-                            Add hastag
-                          </div>
-                        </Row> */}
-                        <Row>
-                          {/* <Col md={10}>
-                          <span className="ml-2">
-                          <label htmlFor="picUploadBtn"><i className="bi bi-image-fill" style={{fontSize: "25px", color: "gray"}}></i></label>
-                          <input type="file" className="d-none" id="picUploadBtn"
-                          onChange={(e)=>{
-                            props.uploadToState(e.target.files[e.target.files.length-1],);}}></input>
-                          </span>
-                          <span className="ml-4"> 
-                          <i className="bi bi-play-btn-fill" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          <span className="ml-4">
-                          <i className="bi bi-card-list" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          <span className="ml-4">
-                          <i className="bi bi-briefcase-fill" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          <span className="ml-4">
-                          <i className="bi bi-star-fill" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          <span className="ml-4">
-                          <i className="bi bi-bar-chart-fill" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          <span className="ml-4">
-                          <i className="bi bi-three-dots" style={{fontSize: "25px", color: "gray"}}></i>
-                          </span>
-                          </Col> */}
+                        </Form.Group>                        
+                        <Row>                          
                           <Col md={2} className="pl-0 ml-auto">
                           <Button 
-                            onClick={()=>{props.editPost(text, props.postId)}}                         
+                            type="button"
+                            onClick={(e)=>{props.editPost(text, props.postId);}}                         
                             variant="outline-dark"
                             style={{ borderRadius: "30px", fontWeight: "bold"}}>
                             Post

@@ -15,8 +15,8 @@ const mapStateToProps = state => {
         uploadToState: (file) => {
           dispatch(upload(file));          
         },
-        uploadToSite: (file,id) =>{
-              dispatch(uploadPicWithThunk(file,id))
+        uploadToSite: (file,id,username) =>{
+              dispatch(uploadPicWithThunk(file,id,username))
             }
             
       };  
@@ -27,8 +27,8 @@ const HeaderProfile = (props) => {
 
       const uploadImage = ()=>{
             const formData = new FormData();
-            formData.append("profile", props.uploaded);
-            props.uploadToSite(formData,props.currentUser._id);
+            formData.append("image", props.uploaded);
+            props.uploadToSite(formData,props.currentUser._id,props.currentUser.username);
       }
      
       const [show, setShow] = useState(false);
@@ -165,7 +165,7 @@ return (
                    <Row>
                          <Col md={8}>
                          <div className="ml-4 pl-3 font-weight-bold" style={{fontSize: "27px"}}>{props.user.name} {props.user.surname}
-                         <span className="font-weight-light ml-2" style={{fontSize: "15px"}}>(he/him)</span>
+                         {/* <span className="font-weight-light ml-2" style={{fontSize: "15px"}}>(he/him)</span> */}
                          </div>
                          </Col>
                          <Col md={4}>
