@@ -4,7 +4,7 @@ import { useEffect } from "react"; */
 import { connect } from "react-redux";
 import { formatDistanceToNow } from 'date-fns'
 import { useState } from "react";
-import { editPostsWithThunk, deletePostsWithThunk} from "../app/redux/actions/actions";
+import { editPostsWithThunk, deletePostsWithThunk,LikePostWithThunk} from "../app/redux/actions/actions";
 import { useNavigate } from "react-router-dom";
 
 
@@ -28,7 +28,11 @@ const mapDispatchToProps = dispatch => {
     },
     editPost: (text, postId) => {
       dispatch(editPostsWithThunk({text},postId))
-    }
+    },
+    giveLike: (postId, userId) => {
+      dispatch(LikePostWithThunk(postId, userId))
+    },
+  
   };  
 };
 
@@ -84,8 +88,8 @@ const NewsFeed = (props) => {
       </div >
       
       <div className="d-flex justify-content-around mb-1 ml-4 border-top interactionButtons">
-        <Button className="d-flex align-items-center font-weight-bolder" style={{color: "grey"}} variant="white">
-        <i className="bi bi-hand-thumbs-up  mr-1"></i>Like
+        <Button className="d-flex align-items-center font-weight-bolder" onClick={() => {props.giveLike(props.postId,props.currentUser._id)}} style={{color: "grey"}} variant="white">
+        <i className="bi bi-hand-thumbs-up  mr-1"></i>Like 
         </Button>
         
         <Button className="d-flex align-items-center mr-3 font-weight-bolder" style={{color: "grey"}}  variant="white">
