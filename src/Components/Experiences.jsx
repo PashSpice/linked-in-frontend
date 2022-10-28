@@ -15,8 +15,8 @@ const mapStateToProps = state => {
  
  const mapDispatchToProps = dispatch => {
    return {
-     fetchExperiences: id => {
-       dispatch(handleFetchWithThunk(id));
+     fetchExperiences: username => {
+       dispatch(handleFetchWithThunk(username));
      }
      
    };  
@@ -31,7 +31,7 @@ const Experiences = (props) => {
 
    const handleCloseAddModal = () => {
       setShowAddModal(false)
-     /*  fetchExperiences(props.userId) */
+       props.fetchExperiences(props.username)
    }
    const handleShowAddModal = () => setShowAddModal(true);
 
@@ -40,7 +40,7 @@ const Experiences = (props) => {
 
    const handleCloseEditModal = () => {
       setShowEditModal(false)
-      props.fetchExperiences(props.userId) 
+      props.fetchExperiences(props.username) 
    }
    const handleShowEditModal = (experience) => {
       setEditingExperience(experience)
@@ -71,7 +71,7 @@ const Experiences = (props) => {
          </Row>
          {experiences &&
             experiences.map((experience, index) => {
-               return <div key={index}>
+               return <div key={index + "exp"}>
                   <Row>
                      <Col md={10}>
                         <ExperiencesList experience={experience} /* fetchExperiences={fetchExperiences} */ />

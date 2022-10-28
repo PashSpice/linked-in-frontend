@@ -384,7 +384,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
       if (response.ok) { 
         dispatch(setLoading(false))         
         console.log("PostEntered!");
-        window.location.reload()
+        /* window.location.reload() */
       } else {
         alert('Error fetching results')
       }
@@ -433,6 +433,7 @@ export const postFeedImgWithThunk = (postImg,id) => {
         return async (dispatch, getState)=>{
           try {
             console.log("2 submit-post-thank",baseEndpoint)
+            console.log(postObj,"postObj post")
             dispatch(setLoading(true));
             const response = await fetch(baseEndpoint, options);
             if (response.ok) {

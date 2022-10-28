@@ -31,7 +31,7 @@ return (
                         
                         <About user={props.currentUser}/>
 
-                        <Experiences userId={props.currentUser._id} canEdit={true}/>
+                        <Experiences userId={props.currentUser._id} username={props.currentUser.username} canEdit={true}/>
 
 
                   </Col>
